@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyBehavior : MonoBehaviour {
 
 
-    PlayerBehavior target;
+    protected PlayerBehavior target;
     
     public float sightDistance = 1f;
     public float speed = 2f;
@@ -24,20 +24,15 @@ public class EnemyBehavior : MonoBehaviour {
 
     public int Health = 3;
 	// Use this for initialization
-	void Start () {
+	protected virtual void Start () {
         xMin = transform.position.x - xMin;
         xMax = transform.position.x + xMax;
 
         rb2d = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
-	}
-
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         /*
         Debug.DrawLine(sight.position, end , Color.red, 0f);

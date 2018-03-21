@@ -153,4 +153,12 @@ public class PlayerBehavior : MonoBehaviour {
         sprite.enabled = true;
         currentState = CharacterState.IDLE;
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Thrown"))
+        {
+            Hit();
+        }
+    }
 }

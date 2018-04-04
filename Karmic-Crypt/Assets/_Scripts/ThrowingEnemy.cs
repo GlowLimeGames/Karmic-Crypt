@@ -43,6 +43,22 @@ public class ThrowingEnemy : EnemyBehavior {
 
         yield return new WaitForSeconds(throwDelay);
 
+        GameObject thrown = Instantiate(throwingObj, transform.position, Quaternion.identity);
+
+        Rigidbody2D throwRB = thrown.GetComponent<Rigidbody2D>();
+
+        Vector3 startPos = transform.position;
+        Vector3 endPos = transform.position;
+
+        endPos.x += Random.Range(-1f, 1f) + transform.localScale.x * throwDistance;
+
+        throwRB.velocity = new Vector2(endPos.x / 2, throwHeight);
+        throwRB.AddTorque(throwHeight * 6f);
+        Vector3 targetDir = thrown.transform.position - new Vector3(endPos.x / 2, throwHeight, thrown.transform.position.z);
+        thrown.transform.right = targetDir;
+
+        yield return new WaitForSeconds(throwDelay);
+        /*
         Vector3 startPos = transform.position;
         Vector3 endPos = transform.position;
 
@@ -64,20 +80,21 @@ public class ThrowingEnemy : EnemyBehavior {
             yield return null;
         }
 
-        startPos = endPos;
-        endPos.x += transform.localScale.x * throwDistance / 4;
-        endPos.y -= throwHeight * 2;
+        startPos = thrown.transform.position;
+        endPos.x += Random.Range(-1f, 1f) + transform.localScale.x * throwDistance / 4;
+        endPos.y -= throwHeight * 1.5f;
 
         percentComplete = 0f;
         while (percentComplete <= 1f)
         {
             percentComplete += Time.deltaTime * fallSpeed;
-            thrown.transform.position = Vector3.Slerp(startPos, endPos, percentComplete);
+            thrown.transform.position = Vector3.Lerp(startPos, endPos, percentComplete);
 
             targetDir = thrown.transform.position - startPos;
             thrown.transform.right = targetDir;
             yield return null;
         }
+        */
 
         throwing = false;
     }

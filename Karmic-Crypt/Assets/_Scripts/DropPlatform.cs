@@ -20,10 +20,13 @@ public class DropPlatform : MonoBehaviour {
         {
             if (player != null)
             {
-                effector.colliderMask = dropMask;
-                gameObject.layer = 9;
-                player.velocity = new Vector2(player.velocity.x, -3f);
-                StartCoroutine(DropWait());
+                if (player.transform.position.y > transform.position.y + transform.localScale.y)
+                {
+                    effector.colliderMask = dropMask;
+                    gameObject.layer = 9;
+                    player.velocity = new Vector2(player.velocity.x, -3f);
+                    StartCoroutine(DropWait());
+                }
             }
         }
 	}
@@ -41,6 +44,14 @@ public class DropPlatform : MonoBehaviour {
         if (collision.gameObject.CompareTag("Player"))
         {
             player = collision.gameObject.GetComponent<Rigidbody2D>();
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (player != null)
+        {
+            player = null;
         }
     }
 }

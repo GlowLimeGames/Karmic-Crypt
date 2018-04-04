@@ -18,8 +18,8 @@ public class EnemyBehavior : MonoBehaviour {
 
     public bool chasing = false;
     
-    Rigidbody2D rb2d;
-    SpriteRenderer sprite;
+    protected Rigidbody2D rb2d;
+    protected SpriteRenderer sprite;
     public int dir = 1;
 
     public int Health = 3;
@@ -68,7 +68,7 @@ public class EnemyBehavior : MonoBehaviour {
         }
     }
 
-    void Flip()
+    protected void Flip()
     {
         dir *= -1;
 
@@ -126,7 +126,7 @@ public class EnemyBehavior : MonoBehaviour {
         sprite.enabled = true;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
@@ -138,7 +138,7 @@ public class EnemyBehavior : MonoBehaviour {
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    protected virtual void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {

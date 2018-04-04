@@ -140,7 +140,7 @@ MonoBehaviour:
   throwSpeed: 1
   fallSpeed: 1
   throwDistance: 10
-  throwHeight: 6
+  throwHeight: 12
 --- !u!212 &212112530156771730
 SpriteRenderer:
   m_ObjectHideFlags: 1

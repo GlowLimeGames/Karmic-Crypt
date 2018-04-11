@@ -18,9 +18,7 @@ public class ThrowingEnemy : EnemyBehavior {
     {
         if (target != null)
         {
-            if (Vector3.Distance(target.transform.localPosition, transform.localPosition) <= throwDistance
-                && ((target.transform.localPosition.x - transform.localPosition.x < 0 && dir < 0) 
-                || (target.transform.localPosition.x - transform.localPosition.x > 0 && dir > 0)))
+            if (Vector3.Distance(target.transform.localPosition, transform.localPosition) <= throwDistance)
             {
                 if (!throwing)
                 {
@@ -52,7 +50,14 @@ public class ThrowingEnemy : EnemyBehavior {
 
         endPos.x += Random.Range(-1f, 1f) + transform.localScale.x * throwDistance;
 
-        throwRB.velocity = new Vector2(endPos.x / 2, throwHeight);
+        if (target.transform.position.x < transform.position.x)
+        {
+            throwRB.velocity = new Vector2(-Vector2.Distance(target.transform.position, transform.position)/2, throwHeight);
+        }
+        else
+        {
+            throwRB.velocity = new Vector2(Vector2.Distance(target.transform.position, transform.position)/2, throwHeight);
+        }
         throwRB.AddTorque(throwHeight * 6f);
         Vector3 targetDir = thrown.transform.position - new Vector3(endPos.x / 2, throwHeight, thrown.transform.position.z);
         thrown.transform.right = targetDir;

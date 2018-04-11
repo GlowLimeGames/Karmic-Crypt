@@ -4,13 +4,54 @@ using UnityEngine;
 
 public class DoorBehavior : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public bool isLocked;
+
+    public bool switchLock;
+    public List<SwitchBehavior> switchList = new List<SwitchBehavior>();
+    public bool enemyLock;
+    public List<EnemyBehavior> enemyList = new List<EnemyBehavior>();
+    
+    private void Update()
+    {
+        if (!isLocked)
+        {
+            return;
+        }
+
+        if (!enemyLock && !switchLock)
+        {
+            isLocked = false;
+        }
+
+        if (enemyList.Count <= 0)
+        {
+            enemyLock = false;
+        }
+
+        if (switchList.Count <= 0)
+        {
+            switchLock = false;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (isLocked)
+        {
+            return;
+        }
+
+        if (collision.gameObject.tag == "Player")
+        {
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                Open();
+            }
+        }
+    }
+
+    void Open()
+    {
+        Destroy(this.gameObject);
+    }
 }

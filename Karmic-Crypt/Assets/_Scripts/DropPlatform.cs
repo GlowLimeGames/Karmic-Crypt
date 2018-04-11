@@ -24,7 +24,7 @@ public class DropPlatform : MonoBehaviour {
                 {
                     effector.colliderMask = dropMask;
                     gameObject.layer = 9;
-                    player.velocity = new Vector2(player.velocity.x, -3f);
+                    player.velocity = new Vector2(player.velocity.x, -5f);
                     StartCoroutine(DropWait());
                 }
             }

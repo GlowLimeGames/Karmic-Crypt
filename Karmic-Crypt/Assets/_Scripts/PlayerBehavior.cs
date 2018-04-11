@@ -37,7 +37,7 @@ public class PlayerBehavior : MonoBehaviour {
 	void Update () {
 		if (equipped && !equipping)
         {
-            if (Input.GetKey(KeyCode.F))
+            if (Input.GetKey(KeyCode.K))
             {
                 Throw();
             }
@@ -45,7 +45,7 @@ public class PlayerBehavior : MonoBehaviour {
 
         if (equipped && !equipping)
         {
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKey(KeyCode.J))
             {
                 if (equipped.canJab)
                 {

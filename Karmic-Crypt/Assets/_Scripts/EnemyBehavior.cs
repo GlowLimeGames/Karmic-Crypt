@@ -23,6 +23,8 @@ public class EnemyBehavior : MonoBehaviour {
     public int dir = 1;
 
     public int Health = 3;
+
+    public DoorBehavior doorRef;
 	// Use this for initialization
 	protected virtual void Start () {
         xMin = transform.position.x - xMin;
@@ -103,6 +105,10 @@ public class EnemyBehavior : MonoBehaviour {
         Health -= damage;
         if (Health <= 0)
         {
+            if (doorRef != null)
+            {
+                doorRef.enemyList.Remove(this);
+            }
             Destroy(this.gameObject);
         }
         else

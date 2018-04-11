@@ -41,7 +41,7 @@ public class InputController : MonoBehaviour {
 
         if (canEquip)
         {
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKey(KeyCode.E))
             {
                 if (hovering != null)
                 {
@@ -64,7 +64,7 @@ public class InputController : MonoBehaviour {
             canJump = false;
         }
 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.Space))
         {
             if (grounded)
             {

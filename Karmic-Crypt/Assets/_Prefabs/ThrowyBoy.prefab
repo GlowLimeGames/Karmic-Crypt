@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1371945556215090}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.63, y: -3.78, z: 0}
+  m_LocalPosition: {x: -2.24, y: -0.83, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -101,7 +101,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 3.2708523, y: 0}
+  m_Offset: {x: 3.2708523, y: -1.4571462}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -112,7 +112,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.5417047, y: 1}
+  m_Size: {x: 7.5417047, y: 3.9142923}
   m_EdgeRadius: 0
 --- !u!114 &114586726750779804
 MonoBehaviour:
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sightDistance: 3
-  speed: 2
+  speed: 0
   chaseSpeed: 3
   chaseDistance: 1.5
   patrolDistance: 1.5

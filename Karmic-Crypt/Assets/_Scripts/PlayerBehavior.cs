@@ -39,7 +39,9 @@ public class PlayerBehavior : MonoBehaviour {
         {
             if (Input.GetKey(KeyCode.K))
             {
-                Throw();
+                float horizontal = Input.GetAxis("Horizontal");
+                float vertical = Input.GetAxis("Vertical");
+                Throw(new Vector2(horizontal, vertical));
             }
         }
 
@@ -72,9 +74,16 @@ public class PlayerBehavior : MonoBehaviour {
     {
         if (equipped != null)
         {
-            Throw();
+            float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
+            Throw(new Vector2(horizontal, vertical));
         }
         equipped = weapon;
+        if (equipped.transform.parent != null)
+        {
+            equipped.transform.parent.GetComponent<MovingPlatform>().otherObjs.Remove(equipped.transform);
+        }
+        equipped.thrown = false;
         equipped.transform.parent = weaponSlot;
         equipped.transform.localPosition = Vector3.zero;
         equipped.pb = this;
@@ -91,10 +100,14 @@ public class PlayerBehavior : MonoBehaviour {
         equipping = false;
     }
 
-    public void Throw()
+    public void Throw(Vector2 direction)
     {
         equipped.transform.parent = null;
-        equipped.ThrowStraight(Mathf.FloorToInt(transform.localScale.x));
+        if (direction.x == 0 && direction.y == 0)
+        {
+            direction.x = Mathf.FloorToInt(transform.localScale.x);
+        }
+        equipped.ThrowDirection(direction);
         equipped = null;
     }
 

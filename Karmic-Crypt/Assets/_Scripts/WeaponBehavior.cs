@@ -11,6 +11,7 @@ public class WeaponBehavior : MonoBehaviour {
     public bool canJab;
     public bool canSwing;
 
+    public int Health;
     public int Damage;
 
     public PlayerBehavior pb;
@@ -22,33 +23,50 @@ public class WeaponBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        Vector3 rotation = transform.localEulerAngles;
+        rotation.x = 0;
+        rotation.y = 0;
         if (held)
         {
             transform.localPosition = Vector3.zero;
+            rotation.z = 0;
         }
+
+        transform.localEulerAngles = rotation;
 	}
 
-    public void ThrowStraight(int dir)
+    public void ThrowDirection(Vector2 dir)
     {
         if (!thrown)
         {
-            StartCoroutine(Straight(dir));
+            StartCoroutine(Throwing(dir));
         }
     }
 
-    IEnumerator Straight(int dir)
+    IEnumerator Throwing(Vector2 dir)
     {
         thrown = true;
         held = false;
 
+        Vector3 force = new Vector3(dir.x * throwSpeed, dir.y * throwSpeed, 0);
+        
+        rb.AddTorque(throwSpeed);
+        rb.velocity = force;
         while (thrown)
         {
-            rb.velocity = transform.right * throwSpeed * dir;
+            
             yield return null;
         }
 
         thrown = false;
-        Break();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (thrown)
+        {
+            thrown = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -63,7 +81,7 @@ public class WeaponBehavior : MonoBehaviour {
             {
                 if (!collision.CompareTag("Weapon"))
                 {
-                    Break();
+                    TakeDamage(2);
                 }
             }
         }
@@ -75,13 +93,18 @@ public class WeaponBehavior : MonoBehaviour {
                 if (collision.CompareTag("Enemy"))
                 {
                     collision.GetComponent<EnemyBehavior>().Hit(Damage);
+                    TakeDamage(1);
                 }
             }
         }
     }
 
-    void Break()
+    void TakeDamage(int hp)
     {
-        Destroy(this.gameObject);
+        Health -= hp;
+        if (Health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

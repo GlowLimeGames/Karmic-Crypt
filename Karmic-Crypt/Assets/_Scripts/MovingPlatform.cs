@@ -38,6 +38,11 @@ public class MovingPlatform : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.transform.parent != null)
+        {
+            return;
+        }
+
         if (!otherObjs.Contains(collision.transform))
         {
             if (collision.transform.position.y > transform.position.y)

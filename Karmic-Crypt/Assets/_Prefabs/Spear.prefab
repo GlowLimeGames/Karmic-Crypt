@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 61217976254288034}
   - component: {fileID: 114017030959469842}
   - component: {fileID: 50636892757083778}
+  - component: {fileID: 61718368864995578}
   m_Layer: 8
   m_Name: Spear
   m_TagString: Weapon
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1434172358574076}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.49, y: -4.06, z: -0.0967071}
+  m_LocalPosition: {x: -2.4949212, y: 2.22, z: -0.0967071}
   m_LocalScale: {x: 1.9840748, y: 0.3525083, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -57,12 +58,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 2
+  m_Constraints: 0
 --- !u!61 &61217976254288034
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -73,6 +74,31 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!61 &61718368864995578
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1434172358574076}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -100,10 +126,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thrown: 0
-  throwSpeed: 1
+  throwSpeed: 10
   held: 0
   canJab: 1
   canSwing: 0
+  Health: 3
   Damage: 1
   pb: {fileID: 0}
 --- !u!212 &212223741824001110

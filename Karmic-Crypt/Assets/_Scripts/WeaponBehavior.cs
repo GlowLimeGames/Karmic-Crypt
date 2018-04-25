@@ -79,6 +79,11 @@ public class WeaponBehavior : MonoBehaviour {
         {
             if (thrown)
             {
+                if (collision.CompareTag("Enemy"))
+                {
+                    collision.GetComponent<EnemyBehavior>().Hit(Mathf.RoundToInt(Damage * 1.5f));
+                }
+
                 if (!collision.CompareTag("Weapon"))
                 {
                     TakeDamage(2);
@@ -101,6 +106,7 @@ public class WeaponBehavior : MonoBehaviour {
 
     void TakeDamage(int hp)
     {
+        thrown = false;
         Health -= hp;
         if (Health <= 0)
         {

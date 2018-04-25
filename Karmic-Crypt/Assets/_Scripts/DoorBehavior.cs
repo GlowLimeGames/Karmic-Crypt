@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DoorBehavior : MonoBehaviour {
 
@@ -10,6 +11,8 @@ public class DoorBehavior : MonoBehaviour {
     public List<SwitchBehavior> switchList = new List<SwitchBehavior>();
     public bool enemyLock;
     public List<EnemyBehavior> enemyList = new List<EnemyBehavior>();
+
+    public int SceneToGo;
     
     private void Update()
     {
@@ -52,6 +55,6 @@ public class DoorBehavior : MonoBehaviour {
 
     void Open()
     {
-        Destroy(this.gameObject);
+        SceneManager.LoadScene(SceneToGo);
     }
 }

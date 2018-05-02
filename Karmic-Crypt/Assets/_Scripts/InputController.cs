@@ -19,13 +19,16 @@ public class InputController : MonoBehaviour {
     bool grounded = true;
     bool canEquip = false;
     bool facingRight = true;
+    bool flipping = false;
 
     WeaponBehavior hovering;
     PlayerBehavior pb;
+    Animator anim;
 	// Use this for initialization
 	void Awake () {
         rb = GetComponent<Rigidbody2D>();
         pb = GetComponent<PlayerBehavior>();
+        anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -86,13 +89,28 @@ public class InputController : MonoBehaviour {
     {
         if (!facingRight && horizontal > 0 || facingRight && horizontal < 0)
         {
-            facingRight = !facingRight;
-            Vector3 playerScale = transform.localScale;
-            playerScale.x *= -1;
-            transform.localScale = playerScale;
+            if (!flipping)
+            {
+                anim.SetTrigger("Flip");
+                StartCoroutine(Turning());
+            }
         }
 
         rb.velocity = new Vector2(horizontal * movementSpeed, rb.velocity.y);
+    }
+
+    IEnumerator Turning()
+    {
+        flipping = true;
+
+        yield return new WaitForSeconds(0.625f);
+
+        flipping = false;
+
+        facingRight = !facingRight;
+        Vector3 playerScale = transform.localScale;
+        playerScale.x *= -1;
+        transform.localScale = playerScale;
     }
 
     bool IsGrounded()
@@ -126,7 +144,7 @@ public class InputController : MonoBehaviour {
         {
             foreach (Transform point in groundPoints)
             {
-                Collider2D[] colliders = Physics2D.OverlapCircleAll(point.position, groundRadius, isGround);
+                Collider2D[] colliders = Physics2D.OverlapCircleAll(point.position, groundRadius);
                 for (int i = 0; i < colliders.Length; i++)
                 {
                     //returns true if the collider is touching something other then the player. 

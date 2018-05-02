@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 61377511059521028}
   - component: {fileID: 251301790978175276}
   - component: {fileID: 114437686141788552}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DropPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4434328970114408}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 251268943486454690}
   - component: {fileID: 114343886227801750}
   - component: {fileID: 114589051580412530}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MovingPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}

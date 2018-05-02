@@ -167,6 +167,14 @@ public class PlayerBehavior : MonoBehaviour {
         currentState = CharacterState.IDLE;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            rb.AddForce(new Vector2(-100f * transform.localScale.x, 50f));
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Thrown"))

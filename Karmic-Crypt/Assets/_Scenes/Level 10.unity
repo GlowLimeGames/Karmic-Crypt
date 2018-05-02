@@ -1006,6 +1006,11 @@ Prefab:
       propertyPath: switchList.Array.data[2]
       value: 
       objectReference: {fileID: 1140472421}
+    - target: {fileID: 114731813860089200, guid: 4917630c725be37438de1e25c349b46d,
+        type: 2}
+      propertyPath: SceneToGo
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4917630c725be37438de1e25c349b46d, type: 2}
   m_IsPrefabParent: 0

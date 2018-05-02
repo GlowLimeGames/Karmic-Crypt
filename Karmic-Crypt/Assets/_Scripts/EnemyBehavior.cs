@@ -150,5 +150,20 @@ public class EnemyBehavior : MonoBehaviour {
         {
             other.gameObject.GetComponent<PlayerBehavior>().Hit();
         }
+
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            if (transform.position.y < other.transform.position.y)
+            {
+                if (other.transform.position.x < transform.position.x)
+                {
+                    xMin = transform.position.x;
+                }
+                else
+                {
+                    xMax = transform.position.x;
+                }
+            }
+        }
     }
 }
